@@ -1,4 +1,5 @@
 <?php
+    //FUNÇÃO DE CADASTRO
     include 'conexao.php'; //CONEXÃO COM O BANCO DE DADOS
 
     //VERIFICAND SE FOI REQUISITADO PELO METÓDO POST
@@ -16,10 +17,12 @@
         $data_atualizacao = date('Y-m-d H:i:s');
 
         //CRIANDO QUERY
-        $sql = "INSERT into clientes (nome, cpf, endereco, bairro, cidade, estado, cep, email, telefone, data_cadastro) values ('$nome', '$cpf', '$endereco', '$bairro', '$cidade', '$estado','$cep', '$email','$telefone', '$data_cadastro')";
+        $sql = "INSERT into clientes (nome, cpf, endereco, bairro, cidade, estado, cep, email, telefone, data_cadastro) values ('$nome', '$cpf', '$endereco', '$bairro', '$cidade', '$estado','$cep', '$email','$telefone', NOW(), NOW())";
         
         if($conn->query($sql) === TRUE){
-            $mensagem = "Cadastro realizado com sucesso!";
+            echo "window.alert('Cadastro realizado com sucesso!')";
+            header("Location: index.php");
+            exit(); //GARANTE QUE O SCRIPT SEJA ENCERRADO APÓS O REDIRECIONAMENTO
         } else {
             $mensagem = "Erro:" . $sql . "<br>" . $conn->error;
         }
@@ -43,28 +46,29 @@
       }
     ?>
 
+      <!-- FUNÇÃO DE INSERÇÃO DE DADOS -->
     <form action="" method="POST">
 
         <label for="nome">NOME</label><br>
-        <input type="text" name="nome" id="nome"><br>
+        <input type="text" name="nome" id="nome" minlength="3" required><br>
         <br>
         <label for="email">EMAIL</label><br>
         <input type="text" name="email" id="email"><br>
         <br>
         <label for="cpf">CPF</label><br>
-        <input type="text" name="cpf" id="cpf"><br>
+        <input type="text" name="cpf" id="cpf" required><br>
         <br>
         <label for="endereco">ENDERECO</label><br>
-        <input type="text" name="endereco" id="endereco"><br>
+        <input type="text" name="endereco" id="endereco" required><br>
         <br>
         <label for="bairro">BAIRRO</label><br>
-        <input type="text" name="bairro" id="bairro"><br>
+        <input type="text" name="bairro" id="bairro" required><br>
         <br>
         <label for="cidade">CIDADE</label><br>
-        <input type="text" name="cidade" id="cidade"><br>
+        <input type="text" name="cidade" id="cidade" required><br>
         <br>
         <label for="estado">ESTADO</label><br>
-        <input type="text" name="estado" id="estado"><br>
+        <input type="text" name="estado" id="estado" required><br>
         <br>
         <label for="cep">CEP</label><br>
         <input type="text" name="cep" id="cep"><br>
@@ -73,10 +77,11 @@
         <input type="text" name="telefone" id="telefone"><br>
         <br>
         <label for="data"> DATA CADASTRO </label><br>
-        <input type="date" id="data_cadastro" name="data_cadastro"><br>
+        <input type="date" id="data_cadastro" name="data_cadastro" required value="<?php echo date ('Y-m-d H:i:s') ?>"><br>
         <br>
         <input type="submit" value="CADASTRAR"><br>
 
+        <a href="index.php"> VOLTAR PARA O MENU </a>
     </form>
 </body>
 </html>
