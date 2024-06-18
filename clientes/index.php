@@ -23,7 +23,7 @@
     <a href="assinaturas_listar.php" class="button-link"> LISTAR ASSINATURA </a><br>
     <br>
     <h3> USUARIO </h3>
-    <a href="usuario_cadastro.php" class="button-link"> CADASTRO USUARIO </a><br>
+    <a href="usuario_cadastrar.php" class="button-link"> CADASTRO USUARIO </a><br>
     <br>
     <a href="usuario_listar.php" class="button-link"> USUARIO LISTAR </a><br>
 </html>

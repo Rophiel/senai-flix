@@ -1,7 +1,10 @@
 <?php
+
+    include 'conexao.php';
+    
     //VERIFICA SE FOI PASSADO UM ID VIA GET 
-    if(isset($_GET['cliente_id'])){
-        $id = intval($_GET['cliente_id']);
+    if(isset($_GET['id'])){
+        $id = intval($_GET['id']);
 
         //CRIANDO A QUERY IRÁ EXECUTAR O COMANDO DE SELECIONAR TODOS OS DADOS DE CLIENTES DO ID ESPECÍFICADO
         $sql = "SELECT * FROM clientes WHERE cliente_id = '$id'";
