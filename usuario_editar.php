@@ -3,9 +3,9 @@
     include 'conexao.php';
 
     if(isset($_GET['id'])){
-        $id = intval($_GET[' id']);
+        $id = intval($_GET['id']);
 
-        $sql = "SELECT * FROM clientes WHERE id = '$id'";
+        $sql = "SELECT * FROM usuarios WHERE usuario_id = '$id'";
 
         $result = $conn->query($sql);
 
@@ -30,6 +30,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDITANDO DADOS DE USUÁRIO</title>
+    <link rel="icon" href="images/caveira-de-pirata.ico">
 </head>
 <body>
     <h2> EDITANDO DADOS DE UM USUÁRIO </h2>

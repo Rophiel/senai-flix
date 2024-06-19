@@ -34,6 +34,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDITAR CLIENTE</title>
+    <link rel="icon" href="images/caveira-de-pirata.ico">
 </head>
 <body>
     <h2> EDITAR CLIENTES </h2>

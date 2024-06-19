@@ -30,20 +30,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 telefone = '$telefone',
                 data_atualizacao = NOW()
             WHERE cliente_id = $id";
-
+    
     // EXECUTAR A QUERY SQL
     if ($conn->query($sql) === TRUE) {
-        header("Location: clientes_listar.php"); // IRÁ SER REDIRECIONADO A ESSA PÁGINA CASO FOR CONCLUÍDO COM SUCESSO
-        echo "window.alert('Atualização realizada com sucesso!')";
+        echo "<script> alert('Atualização realizada com sucesso!'); location.href = 'clientes_listar.php';</script>";
         exit();
     } else {
         echo "Erro ao atualizar cadastro: " . $conn->error;
     }
 
-    $conn->close(); // FECHAR A CONEXÃO COM O BANCO DE DADOS
-
+    
 } else {
     echo 'Método não permitido para processar o formulário.';
     exit();
 }
+
+$conn->close(); // FECHAR A CONEXÃO COM O BANCO DE DADOS
+
 ?>
