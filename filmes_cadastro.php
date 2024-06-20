@@ -1,29 +1,33 @@
 <?php
-    include 'conexao.php';
+include 'conexao.php';
 
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    
+    $titulo = htmlspecialchars($_POST['titulo']);
+    $descricao = htmlspecialchars($_POST['descricao']);
+    $ano_lancamento = htmlspecialchars($_POST['ano_lancamento']);
+    $genero = htmlspecialchars($_POST['genero']);
+    $classificacao = htmlspecialchars($_POST['classificacao']);
+    $data_cadastro = date('Y-m-d H:i:s');
+    $data_atualizacao = date('Y-m-d H:i:s');
 
-        $titulo = htmlspecialchars($_POST['titulo']);
-        $descricao = htmlspecialchars($_POST['descricao']);
-        $ano_lancamento = htmlspecialchars($_POST['ano_lancamento']); // Aqui deve ser capturado o ano_lancamento do POST
-        $genero = htmlspecialchars($_POST['genero']);
-        $classificacao = htmlspecialchars($_POST['classificacao']);
-        $data_cadastro = date('Y-m-d H:i:s');
-        $data_atualizacao = date('Y-m-d H:i:s');
+    // QUERY PARA INSERÇÃO NO BANCO DE DADOS
+    $sql = "INSERT INTO filmes (titulo, descricao, ano_lancamento, genero, classificacao, data_cadastro, data_atualizacao)
+            VALUES ('$titulo', '$descricao', '$ano_lancamento','$genero', '$classificacao', NOW(), NOW())";
 
-        $sql = "INSERT INTO filmes (titulo, descricao, ano_lancamento, genero, classificacao, data_cadastro, data_atualizacao)
-                VALUES ('$titulo', '$descricao', '$ano_lancamento','$genero', '$classificacao', NOW(), NOW())";
-
-        if($conn->query($sql)){
-          echo "<script>alert('Cadastro realizado com sucesso'); window.location.href='index.php';</script>";
-          exit(); // Encerra o script após redirecionamento
-        } else {
-            echo "Erro ao cadastrar dados" . $sql . "<br>" . $conn->error;
-        }
+    
+    if($conn->query($sql)){
+      echo "<script>alert('Cadastro realizado com sucesso'); window.location.href='index.php';</script>";
+      exit(); // Encerra o script após redirecionamento
+    } else {
+        echo "Erro ao cadastrar dados" . $sql . "<br>" . $conn->error;
     }
+}
 
-    $conn->close();
+$conn->close();
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -40,6 +44,7 @@
 
     <div class="container mt-4">
         <form method="post">
+
             <div class="form-group">
                 <label for="titulo">TÍTULO</label>
                 <input type="text" class="form-control" name="titulo" id="titulo" required>
